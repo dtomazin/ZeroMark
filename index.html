@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <Title>ZeroMark</Title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Holtwood+One+SC|Permanent+Marker" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.3/sandstone/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Firebase Link -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.0/firebase.js"></script>
+
+    <!-- Moment.js Link -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+</head>
+
+
+<body>
+
+
+    <h1>Zero Mark
+        <i class="fas fa-shoe-prints"></i>
+    </h1>
+    <h2>Trail Finder</h2>
+
+
+
+
+    <div class="container clearfix">
+        <div class="row">
+            <div class="col-sm">
+                <form class="form my-2 my-lg-0" id="searchForm">
+                    <input id="UserSearchInput" class="form-control mr-sm-2" type="search" placeholder="Where are you hiking today? " aria-label="Search">
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div id="trailMap" class="col-sm-8">
+
+                <iframe class="googleMap" src="https://www.google.com/maps/embed/v1/view?zoom=3&center=37.0902%2C-95.7129&key=AIzaSyCZHm522MDtZTsy5gXFX2ni9rsUYdKXCh4"
+                    allowfullscreen></iframe>
+            </div>
+
+            <div class="col-sm-4">
+                <div id="trailInfo" class="card">
+                    <div class="selectedTrailPhoto">
+                        <img class="card-img-top" src="assets/images/adventure-alps-backpack-554609.jpg" alt="Card image cap">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span class="hikeName">Your adventure begins here.</span>
+                        </h5>
+                        <p class="card-text"></p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hikeInformation" disabled>
+                            Trail Information
+                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hikedForm" disabled>
+                            I Just Hiked This Trail!
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="trails" class="jumbotron">
+    </div>
+
+    <!-- RECENT USER HIKES -->
+   
+    <div id="table-header">RECENT USER HIKES</div>
+
+    <table class="table" id="user-hike-table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Hike Completed</th>
+            <th scope="col">Date</th>
+            <th scope="col">Distance</th>
+            <th scope="col">Time to Complete</th>
+            <th scope="col">Average MPH</th>
+          </tr>
+        </thead>
+        <tbody id="user-hikes">
+          <tr>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <!-- This allows us to scroll down and see the bottom of the table without the footer hiding it -->
+      <div id="spacer"></div>
+
+    <footer>
+        <p class="lead">Zero Mark: The spot where a measured trail begins; may or may not be the trailhead.</p>
+
+        <i class="fas fa-copyright"></i>
+        <span id="footer-text">2018 Zero Mark</span>
+    </footer>
+    <div class="modal fade" id="hikeInformation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="hikeName">Select a Hike!</h5>
+                </div>
+                <div class="selectedTrailPhoto">
+                    <img id="trailInfoImage" src="assets/images/adventure-alps-backpack-554609.jpg" width="100%">
+                </div>
+                <div class="modal-body clearfix">
+
+                    <div id="mileage"></div>
+                    <div id="elevationGain"></div>
+                    <div id="difficulty"></div>
+                    <div id="stars"></div>
+                    <div id="weather"></div>
+                    <div id="directions"></div>
+                </div>
+                <!-- HIKE INFO BUTTON-->
+                <div class="modal-footer">
+                    <button type="button" class="btn-hikeInfo" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+<!-- REFRESH COMMENT -->
+
+    <div class="modal fade" id="hikedForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="hikeName">Share Your Hike!</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">Name</span>
+                        </div>
+                        <input type="text" id="hiker-name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
+                            placeholder="Your name please">
+                    </div>
+
+                    <!-- HIKE START TIME INPUT -->
+                    <div class="control">
+                        <label for="appt-time">Hike Start Time:</label>
+                        <input type="time" id="start-time" />
+                    </div>
+
+                    <!-- HIKE END TIME INPUT -->
+                    <div class="control">
+                        <label for="appt-time">Hike End Time:</label>
+                        <input type="time" id="end-time" />
+                    </div>
+
+                </div>
+
+                <!-- SHARE HIKE BUTTON -->
+                <div class="modal-footer">
+                    <button type="button" id="submitHike-btn" class="btn-submitHike" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZHm522MDtZTsy5gXFX2ni9rsUYdKXCh4&callback=initMap"></script> -->
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZHm522MDtZTsy5gXFX2ni9rsUYdKXCh4&callback=initMap"></script> -->
+</body>
