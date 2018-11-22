@@ -9,7 +9,7 @@ body, footer, .card-body{
 
 body {
     margin-top: 0;
-    background-image: url("../images/jumbotron2.jpg");
+    background-image: url("../images/outdoor.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
 }
@@ -47,6 +47,7 @@ h1 {
 
 #trailInfo {
     border: none;
+    
 }
 
 
@@ -54,7 +55,11 @@ h1 {
     height: 100%;
     max-height: 225px;
     width: 100%;
+   
+   
+  
 }
+
 
 .selectedTrailPhoto {
     text-align: center;

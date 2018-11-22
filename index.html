@@ -33,8 +33,8 @@
     <div class="container clearfix">
         <div class="row">
             <div class="col-sm">
-                <form class="form my-2 my-lg-0" id="searchForm">
-                    <input id="UserSearchInput" class="form-control mr-sm-2" type="search" placeholder="Where are you hiking today? " aria-label="Search">
+                <form class="form my-2 my-lg-0" id="searchForm" >
+                    <input id="UserSearchInput" class="form-control mr-sm-2" type="search" placeholder="Where are you hiking today?"  aria-label="Search">
                 </form>
             </div>
         </div>
@@ -47,20 +47,22 @@
             </div>
 
             <div class="col-sm-4">
-                <div id="trailInfo" class="card">
+                <div id="trailInfo" class="card" src="../images/hiking.jpg">
                     <div class="selectedTrailPhoto">
-                        <img class="card-img-top" src="assets/images/adventure-alps-backpack-554609.jpg" alt="Card image cap">
+                        <img class="card-img-top" alt="">
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style= "background-color:rgba(28, 87, 195, 0.623)">
+                        
                         <h5 class="card-title">
-                            <span class="hikeName">Your adventure begins here.</span>
+                            <span class="hikeName">Your hiking adventure begins here.</span>
                         </h5>
                         <p class="card-text"></p>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hikeInformation" disabled>
                             Trail Information
                         </button>
+                        <hr>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#hikedForm" disabled>
-                            I Just Hiked This Trail!
+                           Post the hike you just completed!
                         </button>
 
                     </div>
@@ -78,9 +80,9 @@
     <table class="table" id="user-hike-table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Name</th>
+            <th scope="col">Your name</th>
             <th scope="col">Hike Completed</th>
-            <th scope="col">Date</th>
+            <th scope="col">Date of hike</th>
             <th scope="col">Distance</th>
             <th scope="col">Time to Complete</th>
             <th scope="col">Average MPH</th>
