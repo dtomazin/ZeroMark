@@ -5,7 +5,9 @@ https://dtomazin.github.io/ZeroMark/
 ![image](https://user-images.githubusercontent.com/38441099/50577292-223d8700-0dda-11e9-8e09-a723b731d4fe.png)
 
 Search results of Google maps from user input
+
 ![image](https://user-images.githubusercontent.com/38441099/53140340-3a5f9600-3541-11e9-9e0b-ea77554008e7.png)
 
 Firebase loaded
+
 ![image](https://user-images.githubusercontent.com/38441099/53140426-7692f680-3541-11e9-905f-9cdc4f7c74e3.png)
